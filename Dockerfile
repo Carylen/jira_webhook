@@ -14,9 +14,9 @@ RUN pip install --no-cache-dir -r /app/requirements.txt
 COPY . /app
 
 ENV PYTHONUNBUFFERED=1
-EXPOSE 9000
+EXPOSE 8000
 
 # If your FastAPI app object is in main.py as `app`
 # and it’s importable as `main:app`, keep as below.
 # If your file is src/main/main.py, see note below.
-CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "9000"]
+CMD ["uvicorn", "--app-dir", "src", "main:app", "--host", "0.0.0.0", "--port", "8000", "--reload"]

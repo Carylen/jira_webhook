@@ -1,4 +1,4 @@
-# db.py
+# src/database/db_session.py
 import os
 from sqlalchemy.ext.asyncio import (
     AsyncSession,
@@ -8,14 +8,9 @@ from sqlalchemy.ext.asyncio import (
 from typing import AsyncGenerator
 from dotenv import load_dotenv
 from sqlmodel import SQLModel
+from utils.constant import DATABASE_URL
 
 load_dotenv()
-
-# Database URL - can be same as FDS or separate
-DATABASE_URL = os.getenv(
-    "DATABASE_URL",
-    "mysql+aiomysql://root:@localhost:3306/jira_webhook",
-)
 
 # Create async engine
 engine = create_async_engine(

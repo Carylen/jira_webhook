@@ -1,6 +1,4 @@
-"""
-Database models for Jira webhook receiver
-"""
+# src/database/db_models.py
 from datetime import datetime
 from typing import Optional, Dict
 from sqlalchemy import Column, DateTime, JSON, TEXT, text
@@ -25,15 +23,15 @@ class tb_r_ticket_customer_mapping(SQLModel, table=True):
         sa_column=Column[datetime](
             DateTime,
             nullable=False,
-            server_default=text("CURRENT_TIMESTAMP")
+            server_default=text("NOW()")
         )
     )
     updated_on: datetime = Field(
         sa_column=Column[datetime](
             DateTime,
             nullable=False,
-            server_default=text("CURRENT_TIMESTAMP"),
-            onupdate=text("CURRENT_TIMESTAMP")
+            server_default=text("NOW()"),
+            onupdate=text("NOW()")
         )
     )
     close_notified: bool = Field(default=False)
